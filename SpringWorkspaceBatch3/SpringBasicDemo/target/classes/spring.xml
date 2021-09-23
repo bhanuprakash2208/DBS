@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd ">
+
+	<bean id="p1" class = "com.dbs.core.SpringBasicDemo.model.Product">
+		<constructor-arg name = "pid" value ="1"> </constructor-arg>
+		<constructor-arg name = "pname" value ="pencil"> </constructor-arg>
+		<constructor-arg name = "price" value ="40"> </constructor-arg>
+	</bean>
+	
+	<bean id="p2" class = "com.dbs.core.SpringBasicDemo.model.Product">
+		<property name="pid" value="2"></property>
+		<property name="pname" value="Bag"></property>
+		<property name="price" value="400"></property>
+	</bean>
+	
+	<bean id="inv1" class = "com.dbs.core.SpringBasicDemo.model.Invoices">
+		<constructor-arg name = "invno" value ="1001"> </constructor-arg>
+		<constructor-arg name = "custname" value ="Bhanu"> </constructor-arg>
+		<constructor-arg name = "date" value ="#{T(java.time.LocalDate).now()}"> </constructor-arg>
+		<constructor-arg name = "product" ref = "p1"> </constructor-arg>
+		<constructor-arg name = "qty" value ="3"> </constructor-arg>
+		<constructor-arg name = "invoiceamount" value ="0"> </constructor-arg>
+	</bean>
+	
+	<bean
+		class="com.dbs.core.SpringBasicDemo.model.CollDemo">
+		<property name="fruits">
+			<list>
+				<value>Oranges</value>
+				<value>Apples</value>
+				<value>Banana</value>
+				<value>Mango's</value>
+			</list>
+		</property>
+		<property name="certificates">
+			<set>
+				<value>OCJP</value>
+				<value>AWS Associate</value>
+			</set>
+		</property>
+		<property name="map">
+			<map>
+				<entry key="k1" value="V1"></entry>
+				<entry key="k2" value="V2"></entry>
+				<entry key="k3" value="V3"></entry>
+			</map>
+		</property>
+		<property name="products">
+			<list>
+				<ref bean="p1"/>
+				<ref bean="p2"/>
+			</list>
+		</property>
+	</bean>
+</beans>
+
+
+
+
