@@ -1,0 +1,136 @@
+<form>
+    
+    <div class="col-md-4 offset-md-3" >
+        <div *ngIf="apiResult.error" class="alert alert-danger mt-3" role="alert">
+            We are unable to process your request. Please try later.
+         </div>
+         <div *ngIf="apiResult.success" class="alert alert-success mt-3" role="alert">
+                Your registration is completed. Please verify your email.
+         </div>
+        <div class="form-group">
+            <label for="email" class="form-label mt-4">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                placeholder="Enter email" [(ngModel)]="userProfile.email">
+        </div>
+ <!-- hover  --> <div class="form-group" >
+            <label for="password" class="form-label mt-4">Password</label>
+            <input type="password" class="form-control" id="password" name="password" aria-describedby="passwordHelp"
+                placeholder="Enter Password" [(ngModel)]="userProfile.password"
+                hover>
+        </div>
+        <div class="form-group">
+            <label for="phone" class="form-label mt-4">Phone</label>
+            <input type="tel" class="form-control" id="password" name="phone" aria-describedby="passwordHelp"
+                placeholder="Enter Password" [(ngModel)]="userProfile.phone"
+                pattern = "^\d{10}$"
+                >
+        </div>
+        <fieldset class="form-group">
+            <label class="mt-4 form-label">Gender</label>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="gender" id="genderMale" value="M"
+                        [(ngModel)]="userProfile.gender" [checked]="userProfile.gender=='M'">
+                    Male
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="gender" id="genderFemale" value="F"
+                        [(ngModel)]="userProfile.gender" [checked]="userProfile.gender=='F'">
+                    Female
+                </label>
+            </div>
+        </fieldset>
+        <!-- Receive the data from child -->
+        <app-dropdown [schema]="countryDropdownSchema"
+        (handleChange) = "countrySelected($event)" ></app-dropdown>
+        
+        <app-dropdown [schema]="stateSchema"></app-dropdown>
+        <div class="form-group">
+            <label for="country" class="form-label mt-4">Country</label>
+                <select id="country" name="country" class="form-select" [(ngModel)]="userProfile.country">
+                    <option value="">Select Country</option>
+                    <option *ngFor="let c of countryList" [value]="c.code">{{c.name}}
+                    <!-- <option *ngFor="let c of countryList" [value]="c.key">{{c.name}} -->
+
+                    </option>
+                </select>
+
+        </div>
+        <div class="form-group mt-3">
+            <button type="button" (click)="handleRegister()" class="btn btn-primary">Register</button>
+        </div>
+    </div>
+</form>
+<!-- <pre>{{userProfile|json}}</pre> -->
+
+
+<!-- <form [formGroup]="loginForm" (ngSubmit)="handleLogin()" novalidate >
+    <div class="col-md-4 offset-md-3">
+        <div class="form-group">
+            <label for="email" class="form-label mt-4">Email address</label>
+            <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp"
+                placeholder="Enter email"  formControlName="username" autocomplete="off">
+            <div *ngIf="!username.valid  && username.dirty" class="text-danger mt-2">
+                <div *ngIf="username.errors?.required" class="text-danger">Email is Required</div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="password" class="form-label mt-4">Password</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Password"
+                formControlName="password" autocomplete="off">
+            <div *ngIf="!password?.valid && password?.dirty " class="text-danger mt-2">
+                <div *ngIf="password.errors?.maxlength">Password cannot be more than 10 characters</div>
+                <div *ngIf="password.errors?.minlength">Password should be miniumum of 6 characters</div>
+                <div *ngIf="password.errors?.required">Password is required</div>
+                <div *ngIf="password.errors?.pattern">Password should be alphanumberic with atleast one special
+                    character</div>
+            </div>
+        </div>
+
+
+        <fieldset class="form-group">
+            <legend class="mt-4">Gender</legend>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="gender" id="gendermale" value="M"
+                        [checked]="userProfile.gender=='M'">
+                    Male
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="gender" id="genderfemale" value="F"
+                        [checked]="userProfile.gender=='F'">
+                    Female
+                </label>
+            </div>
+
+        </fieldset>
+        <div class="form-group">
+            <label for="country" class="form-label mt-4">Country</label>
+            <select id="country" name="country" class="form-select" >
+                <option value="">Select Country</option>
+                <option *ngFor="let c of countryList" [value]="c.code">{{c.name}}
+                </option>
+            </select>
+        </div>
+
+         <div class="form-group">
+            <label for="country" class="form-label mt-4">Country</label>
+
+            <select id="country" name="country" class="form-select" [(ngModel)]="userProfile.country">
+                <option value="">Select Country</option>
+                <option *ngFor="let c of countryList" [value]="c.code">{{c.name}}</option>
+            </select>
+        </div> 
+    </div>
+
+</form>
+<br />
+
+<pre>{{userProfile | json }}</pre> -->

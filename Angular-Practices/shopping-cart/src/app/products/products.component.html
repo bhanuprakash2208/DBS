@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row mt-3 offset-md-1">
+        <div class="card col-md-2 mt-3 ms-2 " *ngFor="let p of products">
+            <img [src]="p.image" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{p.name}}</h5>
+                <p class="card-text">{{p.category}}</p>
+                <p><a href="#" class="btn btn-primary">{{p.price|currency:'INR'}}</a></p>
+
+                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                    <button type="button" class="btn btn-danger" (click)="removeFromCart(p)">-</button>
+                    <button type="button" class="btn btn-warning" disabled>{{p.quantity}}</button>
+                    <button type="button" class="btn btn-success" (click)="addToCart(p)">+</button>
+                    <button type="button" class="btn btn-secondary" disabled>{{p.quantity*p.price|currency:'INR'}}</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container-fluid">
+    <div class="row mt-3 offset-md-1">
+        <div class="card col-md-2 mt-3 ms-2 " *ngFor="let p of products">
+            <img [src]="p.image" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{p.name}}</h5>
+                <p class="card-text">{{p.category}}</p>
+                <a href="#" class="btn btn-primary">{{p.price}}</a>
+                <p class="mt-2">
+                    <button class="btn btn-danger ml-2 mr-2">-</button>
+                    <label class="ml-3">{{p.quantity}}</label>
+                    <button class="btn btn-success ml-1">+</button>
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div> -->

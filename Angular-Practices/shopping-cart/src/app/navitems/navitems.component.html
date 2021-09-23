@@ -1,0 +1,24 @@
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+    <li class="nav-item" *ngFor="let item of navitems">
+        <a class="nav-link" [routerLink]="item.link">{{item.text|lowercase2}}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link">{{currentDate | date:'dd/MM/yy hh:mm:ss'}}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link">{{price | currency:'INR':'symbol':'0.3-4'}}</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link">{{number | phoneformatter:country }}</a>
+    </li>
+    <li class="nav-item">
+        <select id="country" name="country" class="form-select" [(ngModel)]="country">
+            <option value="">Select Country</option>
+            <option *ngFor="let c of countryList" [value]="c.code">{{c.name}}
+
+            </option>
+        </select>
+    </li>
+</ul>
+{{country}}
